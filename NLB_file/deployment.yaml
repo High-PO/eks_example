@@ -1,0 +1,27 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cleks-dyment-roll
+  labels:
+    app: eks-example
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cleks-dyment-roll
+  template:
+    metadata:
+      labels:
+        app: cleks-dyment-roll
+    spec:
+      containers:
+      - name: eks-example
+        image: <image_url>
+        imagePullPolicy: Always # https://m.blog.naver.com/vefe/221888345952
+        ports:
+        - containerPort: 8080
+          name: apiport
+          protocol: TCP
+
+# kubectl apply -f deployment.yaml
